@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Aluno";
+}
+
+<br />
+
+        <h4>Alunos</h4>
+    
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    @foreach (var a in Model)
+    {
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_@a.IdAluno" aria-expanded="true" aria-controls="collapseOne">
+                            @a.Nome
+                        </a>
+                    </h4>
+                </div>
+
+                <div id="collapse_@a.IdAluno" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <label>RA:</label>@a.RA
+                        <br>
+                        <label>Data Nascimento:</label>@a.DataNascimento.ToString("dd/MM/yyyy")
+                        <div class="panel-footer">
+                            <a  onclick="loadDoc('@Url.Action("index", "Disciplina", new { idAluno = @a.IdAluno, nomeAluno = @a.Nome.Trim() })','GET')" data-toggle="modal" data-target="#myModal">
+                                Disciplinas
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+    }
+        </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                    <h4 class="modal-title" id="myModalLabel">Alunos</h4>
+            </div>
+            <div class="modal-body">
+                <div id="demo"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>

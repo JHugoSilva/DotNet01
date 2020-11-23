@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "disciplinas";
+}
+
+<h2>
+    Disciplinas
+    <span class="pull-right">
+        <a href="@Url.Action("novaDisciplina","Disciplina")" class="btn btn-primary">Nova Disciplina</a>
+    </span>
+</h2>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Cod. Disciplina</td>
+            <td>Nome da Disciplina</td>
+            <td>Alunos - RA</td>
+            <td>Semestre</td>
+            <td>Curso</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var d in Model)
+        {
+        <tr>
+            <td>@d.IdDisciplina</td>
+            <td>@d.Nome</td>
+            <td>
+                @foreach (var aluno in d.Alunos)
+                {
+                    @aluno.Nome <b> - </b>
+                    @aluno.RA<br>
+                }
+            </td>
+            <td>@d.Semestre</td>
+            <td>@d.Curso</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
